@@ -22,4 +22,3 @@ install(TARGETS foo
 )
 
 install(EXPORT fooConfig DESTINATION share/cmake)
-export(TARGETS foo FILE fooConfig.cmake)
