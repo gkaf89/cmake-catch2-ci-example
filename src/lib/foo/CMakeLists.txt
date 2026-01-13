@@ -6,14 +6,20 @@ target_include_directories(foo
         $<INSTALL_INTERFACE:include>
 )
 
+target_sources(foo PUBLIC
+    FILE_SET headers
+    TYPE HEADERS
+    BASE_DIRS include
+    FILES include/foo/foo.hpp)
+
 install(TARGETS foo
         EXPORT fooConfig
         ARCHIVE DESTINATION lib
         LIBRARY DESTINATION lib
         RUNTIME DESTINATION bin
         INCLUDES DESTINATION include
+        FILE_SET headers DESTINATION include
 )
 
-install(DIRECTORY include/ DESTINATION include)
-install(EXPORT fooConfig DESTINATION share/foo/cmake)
+install(EXPORT fooConfig DESTINATION share/cmake)
 export(TARGETS foo FILE fooConfig.cmake)
